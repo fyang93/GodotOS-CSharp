@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://bmjyglrsf04uo"]
 
-[ext_resource type="Script" path="res://Scenes/Main/desktop_file_manager.gd" id="1_c0q37"]
-[ext_resource type="Script" path="res://Scenes/Main/wallpaper.gd" id="1_xkkt2"]
+[ext_resource type="Script" path="res://Scenes/Main/Wallpaper.cs" id="1_156vi"]
+[ext_resource type="Script" path="res://Scenes/Main/DesktopFileManager.cs" id="2_6tbx6"]
 [ext_resource type="PackedScene" uid="uid://cfj5p5pgfnywp" path="res://Scenes/Taskbar/taskbar.tscn" id="2_35ao4"]
-[ext_resource type="PackedScene" uid="uid://bwyybu5i3kid" path="res://Scenes/Main/Boot Splash/boot_splash.tscn" id="3_ifoxq"]
+[ext_resource type="PackedScene" uid="uid://bwyybu5i3kid" path="res://Scenes/Main/BootSplash/boot_splash.tscn" id="3_ifoxq"]
 
 [sub_resource type="GDScript" id="GDScript_fyyaf"]
 resource_name = "MainScene"
@@ -51,7 +51,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 expand_mode = 3
-script = ExtResource("1_xkkt2")
+script = ExtResource("1_156vi")
 
 [node name="Fade" type="TextureRect" parent="Wallpaper"]
 visible = false
@@ -71,16 +71,15 @@ anchor_bottom = 1.0
 offset_bottom = -40.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_c0q37")
-direction = "Vertical"
-horizontal_spacing = 20
-left_margin = 10
-up_margin = 10
-right_margin = 10
+script = ExtResource("2_6tbx6")
+_direction = "Vertical"
+_horizontalSpacing = 20
+_leftMargin = 10
+_upMargin = 10
+_rightMargin = 10
 
 [node name="Taskbar" parent="." instance=ExtResource("2_35ao4")]
 layout_mode = 1
-offset_top = 0.0
 
 [node name="Boot Splash" parent="." instance=ExtResource("3_ifoxq")]
 visible = false

@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://cojrqff5vocjv"]
 
-[ext_resource type="Script" path="res://Scenes/Window/window.gd" id="1_c3iwi"]
+[ext_resource type="Script" path="res://Scenes/Window/FakeWindow.cs" id="1_xcwap"]
 [ext_resource type="Texture2D" uid="uid://1ockgc20p033" path="res://Art/Icons/expand.png" id="2_bcfhp"]
-[ext_resource type="Script" path="res://Scenes/Window/resize_drag_spot.gd" id="2_xymxc"]
+[ext_resource type="Script" path="res://Scenes/Window/ResizeDragSpot.cs" id="3_ug5s1"]
 [ext_resource type="Texture2D" uid="uid://detscivjcbnpi" path="res://Art/Icons/corner-handle.png" id="4_qn6o7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gwhiu"]
@@ -19,18 +19,14 @@ bg_color = Color(0.1, 0.1, 0.1, 0.6)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_es3h4"]
-bg_color = Color(0, 0, 0, 0.392157)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iro1c"]
 bg_color = Color(0.501961, 0.501961, 0.501961, 0.392157)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_epasn"]
 bg_color = Color(0.4, 0.4, 0.4, 0.392157)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3xsn"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_es3h4"]
 bg_color = Color(0, 0, 0, 0.392157)
-corner_radius_top_right = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3pwt"]
 bg_color = Color(0.666667, 0, 0, 0.392157)
@@ -38,6 +34,10 @@ corner_radius_top_right = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jljmq"]
 bg_color = Color(1, 0.247059, 0.188235, 0.588235)
+corner_radius_top_right = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3xsn"]
+bg_color = Color(0, 0, 0, 0.392157)
 corner_radius_top_right = 5
 
 [node name="Window" type="Panel" groups=["window"]]
@@ -54,9 +54,10 @@ offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_gwhiu")
-script = ExtResource("1_c3iwi")
+script = ExtResource("1_xcwap")
 
-[node name="Top Bar" type="Panel" parent="."]
+[node name="TopBar" type="Panel" parent="."]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 1
 anchors_preset = 10
@@ -65,7 +66,8 @@ grow_horizontal = 2
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_4otup")
 
-[node name="Title Text" type="RichTextLabel" parent="Top Bar"]
+[node name="TitleText" type="RichTextLabel" parent="TopBar"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 22)
 layout_mode = 1
 anchors_preset = 14
@@ -81,7 +83,7 @@ bbcode_enabled = true
 text = "[center]Hello World!"
 scroll_active = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Top Bar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBar"]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -94,39 +96,43 @@ offset_bottom = 15.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="Minimize Button" type="Button" parent="Top Bar/HBoxContainer"]
+[node name="MinimizeButton" type="Button" parent="TopBar/HBoxContainer"]
+unique_name_in_owner = true
 texture_filter = 6
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_es3h4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_iro1c")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_epasn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_es3h4")
 text = "-"
 
-[node name="Maximize Button" type="Button" parent="Top Bar/HBoxContainer"]
+[node name="MaximizeButton" type="Button" parent="TopBar/HBoxContainer"]
+unique_name_in_owner = true
 texture_filter = 6
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 focus_mode = 0
 theme_override_constants/icon_max_width = 22
-theme_override_styles/normal = SubResource("StyleBoxFlat_es3h4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_iro1c")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_epasn")
+theme_override_styles/normal = SubResource("StyleBoxFlat_es3h4")
 icon = ExtResource("2_bcfhp")
 icon_alignment = 1
 
-[node name="Close Button" type="Button" parent="Top Bar/HBoxContainer"]
+[node name="CloseButton" type="Button" parent="TopBar/HBoxContainer"]
+unique_name_in_owner = true
 texture_filter = 6
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxFlat_i3xsn")
 theme_override_styles/hover = SubResource("StyleBoxFlat_g3pwt")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_jljmq")
+theme_override_styles/normal = SubResource("StyleBoxFlat_i3xsn")
 text = "X"
 
-[node name="Resize Drag Spot" type="Control" parent="."]
+[node name="ResizeDragSpot" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -140,7 +146,7 @@ offset_bottom = 6.0
 grow_horizontal = 0
 grow_vertical = 0
 mouse_default_cursor_shape = 12
-script = ExtResource("2_xymxc")
+script = ExtResource("3_ug5s1")
 
 [node name="CornerHandle" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.25)
@@ -158,8 +164,3 @@ mouse_filter = 2
 texture = ExtResource("4_qn6o7")
 expand_mode = 1
 stretch_mode = 4
-
-[connection signal="gui_input" from="Top Bar" to="." method="_on_top_bar_gui_input"]
-[connection signal="pressed" from="Top Bar/HBoxContainer/Minimize Button" to="." method="_on_minimize_button_pressed"]
-[connection signal="pressed" from="Top Bar/HBoxContainer/Maximize Button" to="." method="_on_maximize_button_pressed"]
-[connection signal="pressed" from="Top Bar/HBoxContainer/Close Button" to="." method="_on_close_button_pressed"]

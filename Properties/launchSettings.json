@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "GodotOS": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Users\\fyang\\Softwares\\Godot_v4.3-stable_mono_win64\\Godot_v4.3-stable_mono_win64.exe",
+      "commandLineArgs": "--path, --verbose",
+      "workingDirectory": ".",
+      "nativeDebugging": true
+    }
+  }
+}

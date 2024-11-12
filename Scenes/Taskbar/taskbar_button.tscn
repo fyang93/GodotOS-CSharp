@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7mejsbueubva"]
 
-[ext_resource type="Script" path="res://Scenes/Taskbar/taskbar_button.gd" id="1_j5fdb"]
+[ext_resource type="Script" path="res://Scenes/Taskbar/TaskbarButton.cs" id="1_ji7lp"]
 
 [sub_resource type="Gradient" id="Gradient_l7111"]
 offsets = PackedFloat32Array(0)
@@ -21,7 +21,7 @@ offset_top = 5.0
 offset_right = 35.0
 offset_bottom = 6.0
 mouse_filter = 1
-script = ExtResource("1_j5fdb")
+script = ExtResource("1_ji7lp")
 
 [node name="SelectedBackground" type="TextureRect" parent="."]
 modulate = Color(0, 0.498039, 1, 0.470588)
